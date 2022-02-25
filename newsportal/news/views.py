@@ -42,9 +42,11 @@ def Topic(request, pk):
 def singleNews(request, pk):
     news = News.objects.get(id=pk)
     categories = Category.objects.all()
+    top = TopNews.objects.all()
     context = {
         'news': news,
-        'categories': categories
+        'categories': categories,
+        'topNews': top
     }
 
     projectObj = News.objects.get(id=pk)
@@ -61,6 +63,14 @@ def singleNews(request, pk):
         messages.success(request, 'Your review was successfully submitted!')
         return redirect('project', pk=projectObj.id)
     return render(request, 'news/single-news.html', context=context)
+
+
+def latest(request):
+    latestNews = News.objects.all()
+    context = {
+        'news': latestNews
+    }
+    return render(request, 'news/latest.html', context=context)
 
 
 @login_required(login_url="login")

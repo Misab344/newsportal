@@ -59,10 +59,10 @@
           {% for news_one in news %}
           <tr>
             <td class="settings__thumbnail">
-              <a href="{% url 'home' news_one.id %}"><img src="{{news_one.featured_image.url}}" alt="Project Thumbnail" /></a>
+              <a href="{% url 'profile' news_one.id %}"><img src="{{news_one.featured_image.url}}" alt="Project Thumbnail" /></a>
             </td>
             <td class="settings__tableInfo">
-              <a href="{% url 'news' news_one.id %}">{{news_one.title}}</a>
+              <a href="{% url 'profile' news_one.id %}">{{news_one.title}}</a>
               <p>{{news_one.description|slice:"150"}}</p>
             </td>
             <td class="settings__tableActions">

@@ -28,11 +28,13 @@
                                         <div class="col-lg-4 col-md-4">
                                             <div class="single-what-news mb-100">
                                                 <div class="what-img">
+                                                    <a href="{% url 'single-news' news_one.id %}">
                                                     <img src="{{news_one.featured_image.url}}" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="what-cap">
                                                     <span class="color1">{{news_one.category}}</span>
-                                                    <h4><a href="#">{{news_one.title}}</a></h4>
+                                                    <h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a></h4>
                                                 </div>
                                             </div>
                                         </div>

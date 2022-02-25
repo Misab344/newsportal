@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-    <main>
+<main>
     <!-- Trending Area Start -->
     <div class="trending-area fix">
         <div class="container">
@@ -14,11 +14,11 @@
                             <strong>Trending now</strong>
                             <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
                             <div class="trending-animated">
-                                <ul id="js-news" class="js-hidden">
+                                <ul class="js-hidden" id="js-news">
                                     {% for news_one in news %}
-                                        {% if forloop.counter < 4 %}
-                                            <li class="news-item">{{news_one.title}}</li>
-                                        {% endif %}
+                                    {% if forloop.counter < 4 %}
+                                    <li class="news-item">{{news_one.title}}</li>
+                                    {% endif %}
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -31,10 +31,11 @@
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
                             <div class="trend-top-img">
-                                <img src="{% static 'img/trending/trending_top.jpg' %}" alt="">
+                                <img alt="" src="{% static 'img/trending/trending_top.jpg' %}">
                                 <div class="trend-top-cap">
                                     <span>Appetizers</span>
-                                    <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of the year</a></h2>
+                                    <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of
+                                        the year</a></h2>
                                 </div>
                             </div>
                         </div>
@@ -42,40 +43,62 @@
                     </div>
                     <!-- Right content -->
                     <div class="col-lg-4">
-                        {% for news_one in topNews %}
-                            {% if forloop.counter < 4 %}
-                                <div class="trand-right-single d-flex">
-                                    <div class="trand-right-img">
-                                        <img src="{{news_one.top.featured_image.url}}" alt="" height="100" width="120">
+                        <div class="blog_right_sidebar">
+                            <aside class="single_sidebar_widget search_widget">
+                                <form action="#">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <input class="form-control" onblur="this.placeholder = 'Search Keyword'" onfocus="this.placeholder = ''"
+                                                   placeholder='Search Keyword'
+                                                   type="text">
+                                            <div class="input-group-append">
+                                                <button class="btns" type="button"><i class="ti-search"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="trand-right-cap">
-                                        <span class="color1">{{news_one.top.category}}</span>
-                                        <h4><a href="details.html">{{news_one.top.title}}</a></h4>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                            type="submit">Search
+                                    </button>
+                                </form>
+                            </aside>
+                        </div>
+                        <!--                        {% for news_one in topNews %}-->
+                        <!--                            {% if forloop.counter < 4 %}-->
+                        <!--                                <div class="trand-right-single d-flex">-->
+                        <!--                                    <div class="trand-right-img">-->
+                        <!--                                        <img src="{{news_one.top.featured_image.url}}" alt="" height="100" width="120">-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="trand-right-cap">-->
+                        <!--                                        <span class="color1">{{news_one.top.category}}</span>-->
+                        <!--                                        <h4><a href="details.html">{{news_one.top.title}}</a></h4>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            {% endif %}-->
+                        <!--                        {% endfor %}-->
 
                     </div>
                 </div>
                 <!-- Trending Bottom -->
                 <div class="trending-bottom">
-                            <div class="row">
-                                {% for news_one in news %}
-                                <div class="col-lg-4">
-                                    <div class="single-bottom mb-35">
-                                        <div class="trend-bottom-img mb-30">
-                                            <img src="{{news_one.featured_image.url}}" alt="" width="180" height="220">
-                                        </div>
-                                        <div class="trend-bottom-cap">
-                                            <span class="color2">{{news_one.category}}</span>
-                                            <h4><h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a></h4></h4>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        {% for news_one in news %}
+                        <div class="col-lg-4">
+                            <div class="single-bottom mb-35">
+                                <div class="trend-bottom-img mb-30">
+                                    <a href="{% url 'single-news' news_one.id %}">
+                                        <img alt="" height="220" src="{{news_one.featured_image.url}}" width="180">
+                                    </a>
                                 </div>
-                                {% endfor %}
+                                <div class="trend-bottom-cap">
+                                    <span class="color2">{{news_one.category}}</span>
+                                    <h4><h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a></h4>
+                                    </h4>
+                                </div>
                             </div>
                         </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -98,7 +121,7 @@
                             {% for news_one in topNews %}
                             <div class="weekly2-single">
                                 <div class="weekly2-img">
-                                    <img  src="{{news_one.top.featured_image.url}}" alt="">
+                                    <img alt="" src="{{news_one.top.featured_image.url}}">
                                 </div>
                                 <div class="weekly2-caption">
                                     <span class="color1">{{news_one.top.category}}</span>
@@ -113,56 +136,60 @@
                 </div>
             </div>
         </div>
-    </div>           
+    </div>
     <!-- End Weekly-News -->
     <!-- Interest New Start -->
     <section class="whats-news-area pt-50 pb-20">
         <div class="container">
             <div class="row">
-            <div class="col-lg-12">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-lg-3 col-md-3">
-                        <div class="section-tittle mb-30">
-                            <h3>Interested News</h3>
+                <div class="col-lg-12">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="section-tittle mb-30">
+                                <h3>Interested News</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Nav Card -->
-                        <div class="tab-content" id="nav-tabContent">
-                            <!-- card one -->
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <div class="whats-news-caption">
-                                    <div class="row">
-                                        {% for news_one in news %}
-                                        {% if news_one.category == profile. %}
-                                        <div class="col-lg-4 col-md-4">
-                                            <div class="single-what-news mb-100">
-                                                <div class="what-img">
-                                                    <img  src="{{news_one.featured_image.url}}" alt="">
-                                                </div>
-                                                <div class="what-cap">
-                                                    <span class="color1">{{news_one.category}}</span>
-                                                    <h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a></h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Nav Card -->
+                            <div class="tab-content" id="nav-tabContent">
+                                <!-- card one -->
+                                <div aria-labelledby="nav-home-tab" class="tab-pane fade show active" id="nav-home"
+                                     role="tabpanel">
+                                    <div class="whats-news-caption">
+                                        <div class="row">
+                                            {% for news_one in news %}
+                                            {% if news_one.category == profile. %}
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="single-what-news mb-100">
+                                                    <div class="what-img">
+                                                        <a href="{% url 'single-news' news_one.id %}">
+                                                            <img alt="" src="{{news_one.featured_image.url}}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="what-cap">
+                                                        <span class="color1">{{news_one.category}}</span>
+                                                        <h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a>
+                                                        </h4>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
-                                        {% endif %}
-                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
+                            <!-- End Nav Card -->
                         </div>
-                    <!-- End Nav Card -->
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </section>
-<!-- Whats New End -->
+    <!-- Whats New End -->
     {% include 'pagination.html' with queryset=news custom_range=custom_range %}
-    </main>
+</main>
 
 {% endblock content %}
