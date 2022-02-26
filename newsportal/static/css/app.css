@@ -13,10 +13,6 @@
   border: 2px solid var(--color-light);
 }
 
-img {
-  width: 100%;
-}
-
 .tag > i.im {
   font-size: 1.5rem;
   margin-right: 0.5rem;

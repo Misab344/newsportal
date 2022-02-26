@@ -1,7 +1,7 @@
 import uuid
 
 from django.db import models
-from newsportal.user.models import Profile
+from user.models import Profile
 
 
 class Category(models.Model):

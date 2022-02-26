@@ -46,7 +46,8 @@ def singleNews(request, pk):
     context = {
         'news': news,
         'categories': categories,
-        'topNews': top
+        'topNews': top,
+
     }
 
     projectObj = News.objects.get(id=pk)
@@ -67,8 +68,12 @@ def singleNews(request, pk):
 
 def latest(request):
     latestNews = News.objects.all()
+    categories = Category.objects.all()
+    top = TopNews.objects.all()
     context = {
-        'news': latestNews
+        'news': latestNews,
+        'categories': categories,
+        'topNews': top,
     }
     return render(request, 'news/latest.html', context=context)
 
