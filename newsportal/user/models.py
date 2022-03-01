@@ -10,7 +10,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=500, blank=True, null=True)
     short_intro = models.CharField(max_length=500, blank=True, null=True)
     location = models.CharField(max_length=500, blank=True, null=True)
-    profile_image = models.ImageField(default='profile/user-default.png', upload_to='profile/')
+    profile_image = models.ImageField(default='profile/user-default.png', upload_to='profile/', null=True, blank=True)
     interest_category = models.ManyToManyField('Interest', blank=True, related_name='interest')
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,

@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<!-- Header Start -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
 <link href="{% static 'css/nav.css' %}" rel="stylesheet">
 <div class="header-area">
     <div class="main-header ">
@@ -16,7 +12,8 @@
                         <div class="header-info-left">
                             <ul>
                                 <li><img alt="" src="{% static 'img/icon/header_icon1.png' %}">34ºc, Sunny</li>
-                                <li><img alt="" src="{% static 'img/icon/header_icon1.png' %}">{{ date | date:"D d M Y"}}
+                                <li><img alt="" src="{% static 'img/icon/header_icon1.png' %}">
+                                    {{ date | date:"D d M Y"}}
                                 </li>
                             </ul>
                         </div>
@@ -43,32 +40,14 @@
 
         {% endif %}
 
-        <div class="header-mid d-none d-md-block">
-            <div class="container">
-                <div class="row d-flex align-items-center">
-                    <!-- Logo -->
-                    <div class="col-xl-3 col-lg-3 col-md-3">
-                        <div class="logo">
-                            <a href="index.html"><img alt="" src="{% static 'img/logo/logo.png' %}"></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9">
-                        <div class="header-banner f-right ">
-                            <img alt="" src="{% static 'img/hero/header_card.jpg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="header-bottom">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12 header-flex">
-                        <!-- sticky -->
-                        <div class="sticky-logo">
-                            <a href="{% url 'home' %}"><img alt="" src="{% static 'img/logo/logo.png' %}"></a>
-                        </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12">
                         <!-- Main-menu -->
+                        <div class="logo">
+                            <a href="{% url 'home' %}"><img alt="" src="{% static 'img/logo/logo.svg' %}"></a>
+                        </div>
                         <div class="main-menu d-none d-md-block">
                             <nav>
                                 <ul id="navigation">
@@ -82,11 +61,9 @@
                                     </li>
                                     <li><a href="{% url 'latest-news'  %}">Latest News</a></li>
 
-                                    <div class="f-right d-none d-lg-block">
-                                        <ul>
+                                    <div class="f-rights  d-lg-block">
+                                        <ul class="navBtn">
                                             {% if request.user.is_authenticated %}
-                                            <!--                                            <li><a href="{% url 'account' %}">Account</a></li>-->
-                                            <!--                                            <li><a href="{% url 'logout' %}">Logout</a></li>-->
                                             <li>
                                                 <a href="{% url 'account' %}">
                                                     <button class="button primary-bg boxed-btn">Account
@@ -95,7 +72,8 @@
                                             </li>
                                             <li>
                                                 <a href="{% url 'logout' %}">
-                                                    <button class="button primary-bg boxed-btn">Logout
+                                                    <button class="button primary-bg boxed-btn"
+                                                            style="padding:25px;color:black">Logout
                                                     </button>
                                                 </a>
                                             </li>
@@ -114,22 +92,29 @@
                                         </ul>
 
                                     </div>
-                                    <div class="blog_right_sidebar">
-                            <aside class="single_sidebar_widget search_widget">
-                                <form action="#" class="form" id='searchForm' method="get">
-                                    <div class="form-group">
-                                        <div class="input-group mb-3">
-                                            <input class="form-control" onblur="this.placeholder = 'Search Keyword'"  value="{{search_query}}" onfocus="this.placeholder = ''"
-                                                   placeholder='Search Keyword'
-                                                   type="text" name="search_query">
-                                            <div class="input-group-append">
-                                                <button class="btns" type="submit"><i class="ti-search"></i></button>
-                                            </div>
+                                    <div class="container">
+                                        <div class="blog_right_sidebar">
+                                            <aside class="single_sidebar_widget search_widget">
+                                                <form action="#" class="form" id='searchForm' method="get">
+                                                    <div class="form-group">
+                                                        <div class="input-group mb-3">
+                                                            <input class="form-control"
+                                                                   name="search_query"
+                                                                   onblur="this.placeholder = 'Search News, User'"
+                                                                   onfocus="this.placeholder = ''"
+                                                                   placeholder='Search Keyword'
+                                                                   type="text" value="{{search_query}}">
+                                                            <div class="input-group-append">
+                                                                <button class="btns" type="submit"><i
+                                                                        class="ti-search"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </aside>
                                         </div>
                                     </div>
-                                </form>
-                            </aside>
-                        </div>
                                 </ul>
 
 
@@ -143,6 +128,7 @@
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-md-none"></div>
+
                     </div>
                 </div>
             </div>
@@ -150,6 +136,39 @@
 
     </div>
 </div>
-<!-- Header End -->
-</body>
 </html>
+
+<style>
+    .navBtn button{
+  background: #fff;
+  color: black !important;
+  display: inline-block;
+  padding: 8px 15px !important;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: 0;
+  border: 1px solid #fc3f00;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #fc3f00;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+@media (min-width: 767px) {
+ .f-rights{
+  float:right;
+}
+
+}
+@media (max-width: 767px) {
+ .f-rights{
+  text-align:center;
+}
+
+}
+
+
+
+
+</style>

@@ -91,115 +91,49 @@
                     </div>
                 </div>
                 <div class="comments-area">
-                    <h4>05 Comments</h4>
+                    {% for review in news.review_set.all %}
+                    <h4>{{news.review_set.all | length}} Comments</h4>
+
                     <div class="comment-list">
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img alt="" src="{% static '/img/comment/comment_1.png' %}" >
+                                    <img alt="" src="{{review.owner.profile_image.url}}">
                                 </div>
                                 <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
+
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <h5>
-                                                <a href="#">Emilly Blunt</a>
+                                                <a href="#">{{review.owner.name}}</a>
                                             </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
+
+                                            <p class="date">{{review.created}}</p>
                                         </div>
-                                        <div class="reply-btn">
-                                            <a class="btn-reply text-uppercase" href="#">reply</a>
-                                        </div>
+
                                     </div>
+                                    <p class="comment">
+                                        {{review.body | linebreaksbr}}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img alt="" src="{% static '/img/comment/comment_2.png' %}">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a class="btn-reply text-uppercase" href="#">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img alt="" src="{% static '/img/comment/comment_3.png' %}">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill
-                                        which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a class="btn-reply text-uppercase" href="#">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div class="comment-form">
                     <h4>Leave a Reply</h4>
-                    <form action="#" class="form-contact comment_form" id="commentForm">
+                    <form action="{% url 'single-news' news.id %}" class="form-contact comment_form" id="commentForm"
+                          method="post">
                         <div class="row">
                             <div class="col-12">
+                                {% csrf_token %}
+                                {% for field in form %}
                                 <div class="form-group">
-                              <textarea class="form-control w-100" cols="30" id="comment" name="comment" placeholder="Write Comment"
-                                        rows="9"></textarea>
+                                    <label for="formInput#textarea">{{field.label}}</label>
+                                    {{field}}
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" id="name" name="name" placeholder="Name" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" id="email" name="email" placeholder="Email"
-                                           type="email">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" id="website" name="website" placeholder="Website"
-                                           type="text">
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="form-group">
@@ -211,22 +145,6 @@
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input class="form-control" onblur="this.placeholder = 'Search News'" onfocus="this.placeholder = ''"
-                                           placeholder='Search News' type="text">
-                                    <div class="input-group-append">
-                                        <button class="btns" type="button"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Search
-                            </button>
-                        </form>
-                    </aside>
                     <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title">Category</h4>
                         <ul class="list cat-list">
@@ -242,18 +160,18 @@
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Top News</h3>
                         {% for news in topNews %}
-                           {% if forloop.counter < 5 %}
+                        {% if forloop.counter < 5 %}
                         <div class="media post_item">
-                            <img alt="post" width="100" height="100" src="{{news.top.featured_image.url}}">
+                            <img alt="post" height="100" src="{{news.top.featured_image.url}}" width="100">
                             <div class="media-body">
-                                <a href="single-blog.html">
+                                <a href="{% url 'single-news' news.top.id %}">
                                     <h3>{{news.top.title}}</h3>
                                 </a>
                                 <p>{{news.top.created}}</p>
                             </div>
                         </div>
-                           {% endif %}
-                       {% endfor %}
+                        {% endif %}
+                        {% endfor %}
 
                     </aside>
                 </div>

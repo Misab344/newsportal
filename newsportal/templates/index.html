@@ -44,10 +44,10 @@
                     <!-- Right content -->
                     <div class="col-lg-4">
                         {% for news_one in topNews %}
-                        {% if forloop.counter < 4 %}
+                        {% if forloop.counter < 3 %}
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
-                                <img alt="" height="100" src="{{news_one.top.featured_image.url}}" width="120">
+                                <img alt=""  src="{{news_one.top.featured_image.url}}" width="120">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{news_one.top.category}}</span>
@@ -63,7 +63,7 @@
                 <div class="trending-bottom">
                     <div class="row">
                         {% for news_one in news %}
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="single-bottom mb-35">
                                 <div class="trend-bottom-img mb-30">
                                     <a href="{% url 'single-news' news_one.id %}">
@@ -107,7 +107,7 @@
                                 <div class="weekly2-caption">
                                     <span class="color1">{{news_one.top.category}}</span>
                                     <p>{{news_one.top.created}}</p>
-                                    <h4><a href="{% url 'single-news' news_one.id %}">{{news_one.top.title}}</a></h4>
+                                    <h4><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title}}</a></h4>
                                 </div>
                             </div>
                             {% endfor %}

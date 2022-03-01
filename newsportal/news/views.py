@@ -40,29 +40,27 @@ def Topic(request, pk):
 
 
 def singleNews(request, pk):
-    news = News.objects.get(id=pk)
     categories = Category.objects.all()
     top = TopNews.objects.all()
-    context = {
-        'news': news,
-        'categories': categories,
-        'topNews': top,
-
-    }
-
-    projectObj = News.objects.get(id=pk)
+    news = News.objects.get(id=pk)
     form = ReviewForm()
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         review = form.save(commit=False)
-        review.project = projectObj
+        review.news = news
         review.owner = request.user.profile
         review.save()
-        projectObj.getVoteCount
 
         messages.success(request, 'Your review was successfully submitted!')
-        return redirect('project', pk=projectObj.id)
+        return redirect('single-news', pk=news.id)
+    context = {
+        'news': news,
+        'categories': categories,
+        'topNews': top,
+        'form': form
+
+    }
     return render(request, 'news/single-news.html', context=context)
 
 

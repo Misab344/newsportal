@@ -11,12 +11,12 @@ def searchNews(request):
     if request.GET.get('search_query'):
         search_query = request.GET.get('search_query')
 
-    projects = News.objects.filter(
+    news = News.objects.filter(
         Q(title__icontains=search_query) |
         Q(description__icontains=search_query) |
         Q(owner__name__icontains=search_query)
     )
-    return projects, search_query
+    return news, search_query
 
 
 def paginateNews(request, news, results):

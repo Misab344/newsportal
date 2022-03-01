@@ -7,17 +7,19 @@
 <section class="blog_area section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="col-lg-12 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
-                    {% for news_one in news %}
 
+                    <div class="row">
+                        {% for news_one in news %}
+                        <div class="col-lg-4">
                     <article class="blog_item">
                         <div class="blog_item_img">
-                            <img alt="" class="card-img rounded-0" height="600" src="{{news_one.featured_image.url}}">
+                            <img alt="" class="card-img rounded-0"  src="{{news_one.featured_image.url}}">
                         </div>
 
                         <div class="blog_details">
-                            <a class="d-inline-block" href="single-blog.html">
+                            <a class="d-inline-block" href="{% url 'single-news' news_one.id %}">
                                 <h2>{{news_one.title}}</h2>
                             </a>
                             <p>{{news_one.description}}</p>
@@ -27,7 +29,10 @@
                             </ul>
                         </div>
                     </article>
-                    {% endfor %}
+                    </div>
+                        {% endfor %}
+                    </div>
+
 
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
@@ -51,57 +56,57 @@
                     </nav>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input class="form-control" onblur="this.placeholder = 'Search Keyword'" onfocus="this.placeholder = ''"
-                                           placeholder='Search Keyword'
-                                           type="text">
-                                    <div class="input-group-append">
-                                        <button class="btns" type="button"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">Search
-                            </button>
-                        </form>
-                    </aside>
+<!--            <div class="col-lg-4">-->
+<!--                <div class="blog_right_sidebar">-->
+<!--                    <aside class="single_sidebar_widget search_widget">-->
+<!--                        <form action="#">-->
+<!--                            <div class="form-group">-->
+<!--                                <div class="input-group mb-3">-->
+<!--                                    <input class="form-control" onblur="this.placeholder = 'Search Keyword'" onfocus="this.placeholder = ''"-->
+<!--                                           placeholder='Search Keyword'-->
+<!--                                           type="text">-->
+<!--                                    <div class="input-group-append">-->
+<!--                                        <button class="btns" type="button"><i class="ti-search"></i></button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"-->
+<!--                                    type="submit">Search-->
+<!--                            </button>-->
+<!--                        </form>-->
+<!--                    </aside>-->
 
-                    <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title">Category</h4>
-                        <ul class="list">
-                            {% for category in categories %}
-                            <li>
-                                <a href="#">{{ category}}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </aside>
+<!--                    <aside class="single_sidebar_widget tag_cloud_widget">-->
+<!--                        <h4 class="widget_title">Category</h4>-->
+<!--                        <ul class="list">-->
+<!--                            {% for category in categories %}-->
+<!--                            <li>-->
+<!--                                <a href="#">{{ category}}</a>-->
+<!--                            </li>-->
+<!--                            {% endfor %}-->
+<!--                        </ul>-->
+<!--                    </aside>-->
 
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Top News</h3>
-                        {% for news in topNews %}
-                           {% if forloop.counter < 8%}
-                        <div class="media post_item">
-                            <img alt="post" width="100" height="100" src="{{news.top.featured_image.url}}">
-                            <div class="media-body">
-                                <a href="single-blog.html">
-                                    <h3>{{news.top.title}}</h3>
-                                </a>
-                                <p>{{news.top.created}}</p>
-                            </div>
-                        </div>
-                           {% endif %}
-                       {% endfor %}
+<!--                    <aside class="single_sidebar_widget popular_post_widget">-->
+<!--                        <h3 class="widget_title">Top News</h3>-->
+<!--                        {% for news in topNews %}-->
+<!--                           {% if forloop.counter < 8%}-->
+<!--                        <div class="media post_item">-->
+<!--                            <img alt="post" width="100" height="100" src="{{news.top.featured_image.url}}">-->
+<!--                            <div class="media-body">-->
+<!--                                <a href="single-blog.html">-->
+<!--                                    <h3>{{news.top.title}}</h3>-->
+<!--                                </a>-->
+<!--                                <p>{{news.top.created}}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                           {% endif %}-->
+<!--                       {% endfor %}-->
 
-                    </aside>
+<!--                    </aside>-->
 
-                </div>
-            </div>
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </section>

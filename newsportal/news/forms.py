@@ -23,11 +23,10 @@ class NewsForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['value', 'body']
+        fields = ['body']
 
         labels = {
-            'value': 'Place your vote',
-            'body': 'Add a comment with your vote'
+            'body': 'Add a comment'
         }
 
     def __init__(self, *args, **kwargs):

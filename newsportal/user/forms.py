@@ -7,7 +7,7 @@ from .models import Profile, Interest
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'email', 'username','password1', 'password2']
+        fields = ['first_name', 'email', 'username', 'password1', 'password2']
         labels = {
             'first_name': 'Name',
         }
