@@ -5,10 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, ProfileForm, InterestForm
 from .models import Profile, Interest
-from news.models import Category
+from news.models import Category, News
 
 
-# Create your views here.
 
 
 def loginUser(request):
@@ -68,11 +67,13 @@ def registerUser(request):
 
 @login_required(login_url='login')
 def profile(request, pk):
-    profiles = Profile.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
     categories = Category.objects.all()
+    news = profile.news_set.all()
     context = {
-        'profile': profiles,
-        'categories': categories
+        'profile': profile,
+        'categories': categories,
+        'news': news
     }
     return render(request, 'user/profile.html', context=context)
 
@@ -80,7 +81,7 @@ def profile(request, pk):
 @login_required(login_url='login')
 def userAccount(request):
     profile = request.user.profile
-    interest = Interest.objects.all()
+    interest = Interest.objects.filter(owner=profile)
     news = profile.news_set.all()
     categories = Category.objects.all()
     context = {

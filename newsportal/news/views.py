@@ -5,9 +5,11 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from .forms import NewsForm, ReviewForm
 from .models import News, TopNews, Category
+
 import datetime
 
 from .utils import searchNews, paginateNews
+from user.models import Interest
 
 
 def home(request):
@@ -44,7 +46,6 @@ def singleNews(request, pk):
     top = TopNews.objects.all()
     news = News.objects.get(id=pk)
     form = ReviewForm()
-
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         review = form.save(commit=False)
@@ -58,7 +59,7 @@ def singleNews(request, pk):
         'news': news,
         'categories': categories,
         'topNews': top,
-        'form': form
+        'form': form,
 
     }
     return render(request, 'news/single-news.html', context=context)
@@ -72,6 +73,20 @@ def latest(request):
         'news': latestNews,
         'categories': categories,
         'topNews': top,
+    }
+    return render(request, 'news/latest.html', context=context)
+
+
+@login_required(login_url="login")
+def interestNews(request):
+    news = News.objects.all()
+    categories = Category.objects.all()
+    profile = request.user.profile
+    interest = Interest.objects.filter(owner=profile)
+    context = {
+        'news': news,
+        'categories': categories,
+        'interest_all': interest,
     }
     return render(request, 'news/latest.html', context=context)
 

@@ -21,12 +21,13 @@ class News(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     description = models.TextField(null=True, blank=True)
     featured_image = models.ImageField(
-        default='images/cat.jpg', null=True, blank=True
+        default='news/default.jpg', null=True, blank=True, upload_to='news/'
     )
     image_link = models.CharField(max_length=1000, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
+    verified_news = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -49,9 +50,6 @@ class Review(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 
-    class Meta:
-        unique_together = [['owner', 'news']]
-
     def __str__(self):
         return self.body
 
@@ -64,6 +62,5 @@ class TopNews(models.Model):
 
     def __str__(self):
         return self.top.title
-
 
 

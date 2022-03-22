@@ -35,6 +35,7 @@ class ProfileForm(ModelForm):
 
 class InterestForm(ModelForm):
     class Meta:
+
         model = Interest
         fields = ['name']
 

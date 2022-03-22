@@ -36,11 +36,25 @@
         </form>
         <div class="auth__alternative">
           <p>Already have an Account?</p>
-          <a href="{% url 'login' %}">Log In</a>
+          <a class="text" href="{% url 'login' %}">Log In</a>
         </div>
       </div>
     </div>
 </section>
 <br><br><br>
 <hr>
+<style>
+  .text{
+      color: #635c5c;
+    }
+    .text:hover {
+      color: #fff;
+    }
+    .text:focus,
+    .text:hover,
+    .portfolio-cat a:hover,
+    .footer -menu li text:hover {
+      text-decoration: none;
+    }
+</style>
 {% endblock content %}

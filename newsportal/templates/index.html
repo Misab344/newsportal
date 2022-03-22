@@ -31,12 +31,17 @@
                         <!-- Trending Top -->
                         <div class="trending-top mb-30">
                             <div class="trend-top-img">
-                                <img alt="" src="{% static 'img/trending/trending_top.jpg' %}">
+                                {% for news_one in topNews %}
+                                        {% if forloop.counter <= 1 %}
+                                <img alt="" src="{{news_one.top.featured_image.url}}">
                                 <div class="trend-top-cap">
-                                    <span>Appetizers</span>
-                                    <h2><a href="details.html">Welcome To The Best Model Winner<br> Contest At Look of
-                                        the year</a></h2>
+
+                                    <span>{{news_one.top.category}}</span>
+                                    <h2><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title}}</a></h2>
+
                                 </div>
+                                 {% endif %}
+                                    {% endfor %}
                             </div>
                         </div>
 
@@ -44,14 +49,14 @@
                     <!-- Right content -->
                     <div class="col-lg-4">
                         {% for news_one in topNews %}
-                        {% if forloop.counter < 3 %}
+                        {% if forloop.counter < 5 %}
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
                                 <img alt=""  src="{{news_one.top.featured_image.url}}" width="120">
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{news_one.top.category}}</span>
-                                <h4><a href="details.html">{{news_one.top.title}}</a></h4>
+                                <h4><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title}}</a></h4>
                             </div>
                         </div>
                         {% endif %}

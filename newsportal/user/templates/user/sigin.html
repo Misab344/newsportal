@@ -48,10 +48,24 @@
         </form>
         <div class="auth__alternative">
           <p>Don’t have an Account?</p>
-          <a href="{% url 'register' %}">Sign Up</a>
+          <a class="text" href="{% url 'register' %}">Sign Up</a>
         </div>
       </div>
     </div>
        </div>
 	<hr>
+<style>
+  .text{
+      color: #635c5c;
+    }
+    .text:hover {
+      color: #fff;
+    }
+    .text:focus,
+    .text:hover,
+    .portfolio-cat a:hover,
+    .footer -menu li text:hover {
+      text-decoration: none;
+    }
+</style>
 {% endblock content %}

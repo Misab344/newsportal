@@ -1,6 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from django.db.models.signals import post_save
+
+
+def createProfile(sender, instance, created, **kwargs):
+    if created:
+        user = instance
+        profile = Profile.objects.create(
+            user=user,
+            username=user.username,
+            email=user.email,
+            name=user.first_name
+        )
+post_save.connect(createProfile, sender=User)
 
 
 class Profile(models.Model):
@@ -10,7 +23,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=500, blank=True, null=True)
     short_intro = models.CharField(max_length=500, blank=True, null=True)
     location = models.CharField(max_length=500, blank=True, null=True)
-    profile_image = models.ImageField(default='profile/user-default.png', upload_to='profile/', null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile/', null=True, blank=True, default='profile/user-default.png',)
     interest_category = models.ManyToManyField('Interest', blank=True, related_name='interest')
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,

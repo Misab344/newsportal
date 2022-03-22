@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<!--================latest news Area =================-->
+<!--================ interested news Area =================-->
 <section class="blog_area section-padding">
     <div class="container">
         <div class="row">
@@ -12,6 +12,8 @@
 
                     <div class="row">
                         {% for news_one in news %}
+                        {% for interest in interest_all %}
+                        {% if news_one.category == interest %}
                         <div class="col-lg-4">
                     <article class="blog_item">
                         <div class="blog_item_img">
@@ -30,6 +32,8 @@
                         </div>
                     </article>
                     </div>
+                        {% endif %}
+                        {% endfor %}
                         {% endfor %}
                     </div>
 
