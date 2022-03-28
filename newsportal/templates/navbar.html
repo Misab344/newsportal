@@ -60,6 +60,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="{% url 'latest-news'  %}">Latest News</a></li>
+<!--                                    <li><a href="{% url 'interest-news'  %}">Interest News</a></li>-->
 
                                     <div class="f-rights  d-lg-block">
                                         <ul class="navBtn">
@@ -95,7 +96,7 @@
                                     <div class="container">
                                         <div class="blog_right_sidebar">
                                             <aside class="single_sidebar_widget search_widget">
-                                                <form action="#" class="form" id='searchForm' method="get">
+                                                <form action="{% url 'latest-news' %}" class="form" id='searchForm' method="get">
                                                     <div class="form-group">
                                                         <div class="input-group mb-3">
                                                             <input class="form-control"

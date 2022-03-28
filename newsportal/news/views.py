@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from .forms import NewsForm, ReviewForm
-from .models import News, TopNews, Category
+from .models import News, TopNews, Category, Review
 
 import datetime
 
@@ -66,13 +66,16 @@ def singleNews(request, pk):
 
 
 def latest(request):
-    latestNews = News.objects.all()
+    news, search_query = searchNews(request)
+    custom_range, news = paginateNews(request, news, 6)
     categories = Category.objects.all()
     top = TopNews.objects.all()
     context = {
-        'news': latestNews,
+        'news': news,
+        'search_query': search_query,
         'categories': categories,
         'topNews': top,
+        'custom_range': custom_range,
     }
     return render(request, 'news/latest.html', context=context)
 
@@ -83,12 +86,15 @@ def interestNews(request):
     categories = Category.objects.all()
     profile = request.user.profile
     interest = Interest.objects.filter(owner=profile)
+    comment = Review.objects.all()
+    print(interest)
     context = {
         'news': news,
         'categories': categories,
         'interest_all': interest,
+        'comment': comment
     }
-    return render(request, 'news/latest.html', context=context)
+    return render(request, 'news/interested-news.html', context=context)
 
 
 @login_required(login_url="login")
