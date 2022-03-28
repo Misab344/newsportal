@@ -85,14 +85,15 @@ def interestNews(request):
     news = News.objects.all()
     categories = Category.objects.all()
     profile = request.user.profile
-    interest = Interest.objects.filter(owner=profile)
+    interest = list(Interest.objects.filter(owner=profile).values_list('name', flat=True))
     comment = Review.objects.all()
     print(interest)
     context = {
         'news': news,
         'categories': categories,
-        'interest_all': interest,
-        'comment': comment
+        'interests': interest,
+        'comment': comment,
+        'profile': profile
     }
     return render(request, 'news/interested-news.html', context=context)
 

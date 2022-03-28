@@ -17,7 +17,7 @@
                                 <ul class="js-hidden" id="js-news">
                                     {% for news_one in news %}
                                     {% if forloop.counter < 4 %}
-                                    <li class="news-item">{{news_one.title}}</li>
+                                    <li class="news-item">{{ news_one.title | slice:100 }}.....</li>
                                     {% endif %}
                                     {% endfor %}
                                 </ul>
@@ -37,7 +37,7 @@
                                 <div class="trend-top-cap">
 
                                     <span>{{news_one.top.category}}</span>
-                                    <h2><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title}}</a></h2>
+                                    <h2><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title | slice:80 }}....</a></h2>
 
                                 </div>
                                  {% endif %}
@@ -56,7 +56,7 @@
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{news_one.top.category}}</span>
-                                <h4><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title}}</a></h4>
+                                <h4><a href="{% url 'single-news' news_one.top.id %}">{{news_one.top.title | slice:60}}....</a></h4>
                             </div>
                         </div>
                         {% endif %}
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="trend-bottom-cap">
                                     <span class="color2">{{news_one.category}}</span>
-                                    <h4><h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title}}</a></h4>
+                                    <h4><h4><a href="{% url 'single-news' news_one.id %}">{{news_one.title | slice:150 }}.....</a></h4>
                                     </h4>
                                 </div>
                             </div>

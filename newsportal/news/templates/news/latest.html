@@ -15,14 +15,14 @@
                         <div class="col-lg-4">
                     <article class="blog_item">
                         <div class="blog_item_img">
-                            <img alt="" class="card-img rounded-0"  src="{{news_one.featured_image.url}}">
+                            <img alt="" class="card-img rounded-0" height="350" src="{{news_one.featured_image.url}}">
                         </div>
 
                         <div class="blog_details">
                             <a class="d-inline-block" href="{% url 'single-news' news_one.id %}">
-                                <h2>{{news_one.title}}</h2>
+                                <h2>{{news_one.title | slice:45}} ......</h2>
                             </a>
-                            <p>{{news_one.description}}</p>
+                            <p>{{news_one.description | slice:150}}</p>
                             <ul class="blog-info-link">
                                 <li><a href="#"><i class="fa fa-user"></i> {{news_one.category}}</a></li>
                                 <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
