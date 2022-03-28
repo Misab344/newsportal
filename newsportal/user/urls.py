@@ -16,6 +16,8 @@ urlpatterns = [
     path('edit-interest/<str:pk>/', views.updateInterest, name='edit-interest'),
     path('delete-interest/<str:pk>/', views.deleteInterest, name='delete-interest'),
 
-
+    path('inbox/', views.inbox, name="inbox"),
+    path('message/<str:pk>/', views.viewMessage, name="message"),
+    path('create-message/<str:pk>/', views.createMessage, name="create-message"),
 ]
 

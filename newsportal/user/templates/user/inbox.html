@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<!-- Main Section -->
+<div class="container">
+    <main class="inbox my-xl">
+        <div class="content-box">
+            <h3 class="inbox__title">New Messages( {{unreadCount}} )</h3>
+
+            <ul class="messages">
+                {% for message in messageRequests %}
+                {% if message.is_read == False %}
+                <li class="message message--unread">
+                    {% else %}
+                <li class="message">
+                    {% endif %}
+
+                    <a href="{% url 'message' message.id %}">
+                        <div class="table-responsive">
+                            <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
+                                <tbody>
+                                <!-- row -->
+                                <tr>
+                                    <!-- star -->
+                                    <td><i class="fa fa-star text-warning"></i></td>
+                                    <td>
+                                        <span class="mb-0 text-muted">{{message.name}}</span>
+                                    </td>
+                                    <!-- Message -->
+                                    <td>
+                                        <a class="link" href="javascript: void(0)">
+                                            <span class="text-dark">{{message.subject}}</span>
+                                        </a>
+                                    </td>
+                                    <!-- Time -->
+                                    <td class="text-muted">{{message.created}}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </a>
+                    <!-- Mail list-->
+
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+</div>
+
+{% endblock content %}

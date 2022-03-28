@@ -161,7 +161,7 @@ def inbox(request):
     messageRequests = profile.messages.all()
     unreadCount = messageRequests.filter(is_read=False).count()
     context = {'messageRequests': messageRequests, 'unreadCount': unreadCount}
-    return render(request, 'users/inbox.html', context)
+    return render(request, 'user/inbox.html', context)
 
 
 @login_required(login_url='login')
@@ -172,7 +172,7 @@ def viewMessage(request, pk):
         message.is_read = True
         message.save()
     context = {'message': message}
-    return render(request, 'users/message.html', context)
+    return render(request, 'user/message.html', context)
 
 
 def createMessage(request, pk):
@@ -197,7 +197,7 @@ def createMessage(request, pk):
             message.save()
 
             messages.success(request, 'Your message was successfully sent!')
-            return redirect('user-profile', pk=recipient.id)
+            return redirect('profile', pk=recipient.id)
 
     context = {'recipient': recipient, 'form': form}
-    return render(request, 'users/message_form.html', context)
+    return render(request, 'user/message_form.html', context)
